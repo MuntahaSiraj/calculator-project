@@ -1,0 +1,363 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#050505;
+    overflow:hidden;
+    position:relative;
+}
+
+/* Neon Background Glow */
+
+body::before{
+    content:"";
+    position:absolute;
+    width:450px;
+    height:450px;
+    background:#ff008c;
+    border-radius:50%;
+    filter:blur(180px);
+    top:-180px;
+    left:-180px;
+    opacity:.45;
+    animation:pinkGlow 8s infinite alternate ease-in-out;
+}
+
+body::after{
+    content:"";
+    position:absolute;
+    width:450px;
+    height:450px;
+    background:#00f5ff;
+    border-radius:50%;
+    filter:blur(180px);
+    bottom:-180px;
+    right:-180px;
+    opacity:.45;
+    animation:blueGlow 8s infinite alternate ease-in-out;
+}
+
+@keyframes pinkGlow{
+    from{
+        transform:translate(0,0);
+    }
+    to{
+        transform:translate(120px,70px);
+    }
+}
+
+@keyframes blueGlow{
+    from{
+        transform:translate(0,0);
+    }
+    to{
+        transform:translate(-120px,-70px);
+    }
+}
+
+.container{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    position:relative;
+    z-index:2;
+}
+/* ===========================
+   Calculator Box
+=========================== */
+
+.calculator{
+    width:100%;
+    max-width:390px;
+    background:#0d0d0d;
+    padding:25px;
+    border-radius:25px;
+    position:relative;
+    z-index:2;
+    border:2px solid transparent;
+    overflow:hidden;
+    animation:float 4s ease-in-out infinite;
+}
+
+.calculator::before{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    border-radius:25px;
+    background:linear-gradient(
+        45deg,
+        #ff008c,
+        #00f5ff,
+        #ff008c,
+        #00f5ff
+    );
+    background-size:300% 300%;
+    animation:borderAnimation 5s linear infinite;
+    z-index:-2;
+}
+
+.calculator::after{
+    content:"";
+    position:absolute;
+    inset:3px;
+    background:#0d0d0d;
+    border-radius:22px;
+    z-index:-1;
+}
+
+@keyframes borderAnimation{
+
+0%{
+background-position:0% 50%;
+}
+
+50%{
+background-position:100% 50%;
+}
+
+100%{
+background-position:0% 50%;
+}
+
+}
+
+@keyframes float{
+
+0%,100%{
+transform:translateY(0);
+}
+
+50%{
+transform:translateY(-10px);
+}
+
+}
+
+.calculator h2{
+    text-align:center;
+    color:#fff;
+    margin-bottom:20px;
+    font-size:30px;
+    letter-spacing:2px;
+    text-shadow:
+        0 0 10px #ff008c,
+        0 0 20px #00f5ff;
+}
+/* ===========================
+   Display
+=========================== */
+
+.display{
+    margin-bottom:20px;
+}
+
+.display input{
+    width:100%;
+    height:80px;
+    border:none;
+    outline:none;
+    border-radius:18px;
+    background:#111;
+    color:#00f5ff;
+    text-align:right;
+    padding:20px;
+    font-size:2rem;
+    font-weight:600;
+
+    box-shadow:
+        inset 0 0 12px rgba(0,245,255,.3),
+        0 0 15px rgba(0,245,255,.6);
+
+    text-shadow:0 0 10px #00f5ff;
+}
+
+/* ===========================
+   Buttons Grid
+=========================== */
+
+.buttons{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.btn{
+    height:68px;
+    border:none;
+    outline:none;
+    border-radius:16px;
+    cursor:pointer;
+    font-size:22px;
+    font-weight:600;
+    color:#fff;
+    background:#111;
+    transition:.3s ease;
+}
+
+/* Number Buttons */
+
+.btn:not(.operator):not(.equal){
+    border:2px solid #00f5ff;
+    color:#00f5ff;
+
+    box-shadow:
+        0 0 10px rgba(0,245,255,.6);
+}
+
+.btn:not(.operator):not(.equal):hover{
+    background:#00f5ff;
+    color:#000;
+
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 0 15px #00f5ff,
+        0 0 35px #00f5ff,
+        0 0 60px #00f5ff;
+}
+
+/* Operator Buttons */
+
+.operator{
+    border:2px solid #ff008c;
+    color:#ff008c;
+
+    box-shadow:
+        0 0 10px rgba(255,0,140,.6);
+}
+
+.operator:hover{
+    background:#ff008c;
+    color:#fff;
+
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 0 15px #ff008c,
+        0 0 35px #ff008c,
+        0 0 60px #ff008c;
+}
+/* ===========================
+   Equal Button
+=========================== */
+
+.equal{
+    background:linear-gradient(135deg,#ff008c,#00f5ff);
+    color:#fff;
+    font-size:24px;
+    font-weight:700;
+
+    box-shadow:
+        0 0 15px #ff008c,
+        0 0 35px #00f5ff;
+
+    transition:.3s ease;
+}
+
+.equal:hover{
+    transform:translateY(-4px) scale(1.05);
+
+    box-shadow:
+        0 0 20px #ff008c,
+        0 0 45px #00f5ff,
+        0 0 70px #ff008c;
+}
+
+.btn:active{
+    transform:scale(.94);
+}
+
+/* ===========================
+   Shine Effect
+=========================== */
+
+.btn{
+    position:relative;
+    overflow:hidden;
+}
+
+.btn::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:60%;
+    height:100%;
+    background:rgba(255,255,255,.35);
+    transform:skewX(-25deg);
+    transition:.6s;
+}
+
+.btn:hover::before{
+    left:150%;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media(max-width:768px){
+
+.calculator{
+    max-width:420px;
+}
+
+}
+
+@media(max-width:480px){
+
+.container{
+    padding:15px;
+}
+
+.calculator{
+    width:100%;
+    padding:20px;
+    border-radius:20px;
+}
+
+.calculator h2{
+    font-size:24px;
+}
+
+.display input{
+    height:70px;
+    font-size:26px;
+    padding:15px;
+}
+
+.buttons{
+    gap:10px;
+}
+
+.btn{
+    height:58px;
+    font-size:18px;
+}
+
+}
+
+@media(max-width:350px){
+
+.display input{
+    font-size:22px;
+}
+
+.btn{
+    height:52px;
+    font-size:16px;
+}
+
+}
